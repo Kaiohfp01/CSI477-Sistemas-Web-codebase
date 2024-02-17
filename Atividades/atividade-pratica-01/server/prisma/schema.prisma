@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Estado {
+  id    Int    @id @default(autoincrement())
+  nome  String
+  sigla String @unique
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt // Registro gravado no momento em q ele é salvo
+
+  cidades Cidade[] // Criando uma relaçõ multipla, ou seja, um Estado tem varias Cidades
+
+  // O nome dado a tabela sera:
+  @@map("estados")
+}
+
+model Cidade {
+  id        Int    @id @default(autoincrement())
+  nome      String
+  estado_id Int
+
+  estado Estado @relation(fields: [estado_id], references: [id]) // Criando uma relação
+  locais_coleta LocalColeta[] 
+  pessoas    Pessoas[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("cidades")
+}
+
+model LocalColeta{
+  id Int @id @default(autoincrement())
+  cidade_id   Int
+  rua         String
+  numero      String
+  complemento String 
+  Doacao     Doacoes[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+
+  cidade Cidade @relation(fields: [cidade_id], references: [id])
+  @@map("locais_coleta")
+}
+
+model Doacoes{
+id Int @id @default(autoincrement())
+pessoa_Id  Int
+local_Id   Int
+data       DateTime
+
+created_at DateTime @default(now())
+updated_at DateTime @updatedAt
+
+local       LocalColeta @relation(fields: [local_Id], references: [id])
+}
+
+model Pessoas{
+id Int @id @default(autoincrement())
+nome        String
+rua         String
+numero      String 
+complemento String
+rg          String
+cidade_id   Int
+tipo_id     Int
+
+created_at DateTime @default(now())
+updated_at DateTime @updatedAt
+
+cidades     Cidade @relation(fields: [cidade_id], references: [id])
+tipo_sanguineo  Tipos_Sanguineos @relation(fields: [tipo_id], references: [id])
+}
+
+model Tipos_Sanguineos{
+id      Int @id @default(autoincrement())
+tipo    String
+fator   String
+pessoas      Pessoas[]
+
+created_at DateTime @default(now())
+updated_at DateTime @updatedAt
+
+}
+// Para atualizar o esquema para o BD faremos -> "npx prisma migrate dev" 
+// OBS: Migração é Atualização

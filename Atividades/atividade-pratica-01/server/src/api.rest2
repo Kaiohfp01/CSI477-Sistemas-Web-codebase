@@ -1,0 +1,12 @@
+
+
+POST http://localhost:5000/locaiscoleta
+Content-Type: application/json
+
+{
+  "cidade_id":   3
+  "rua"      :  "Tal"
+  "numero"   :  "12"
+  "complemento": "aa"
+}
+###

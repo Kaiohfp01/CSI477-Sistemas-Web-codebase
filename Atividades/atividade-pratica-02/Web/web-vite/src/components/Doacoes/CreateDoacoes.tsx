@@ -1,0 +1,99 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../../services/Api";
+import { LocalColetaInterface } from "../localColeta/ListLocalColeta";
+import { PessoaInterface } from "../Pessoas/ListPessoas";
+import './Estilo.css'; // Importa os estilos CSS
+
+
+const CreateDoacoes = () => {
+    const [pessoaId, setPessoaId] = useState(0);
+    const [localId, setLocalId] = useState(0);
+    const [data, setData] = useState('');
+    const [locaisColeta, setLocaisColeta] = useState<LocalColetaInterface[]>([]);
+    const [pessoas, setPessoas] = useState<PessoaInterface[]>([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        api.get('/LocaisColeta')
+            .then(response => {
+                setLocaisColeta(response.data);
+            })
+            .catch(error => {
+                console.error("Erro ao buscar locais de coleta:", error);
+            },);
+        
+
+        api.get('/pessoas')
+            .then(response => {
+                setPessoas(response.data);
+            })
+            .catch(error => {
+                console.error("Erro ao buscar pessoas:", error);
+            });
+    }, []);
+
+    const handleNewDoacao = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const data = {
+            pessoa_Id: pessoaId,
+            local_Id: localId,
+            data: new Date().toISOString()
+        };
+
+        try {
+            await api.post('/doacoes', data);
+            alert("Doação inserida com sucesso!");
+            navigate('/doacoes');
+        } catch (error) {
+            console.error(error);
+            alert("Erro na inserção da doação!");
+        }
+    };
+
+    return (
+        <div>
+            <h3>Cadastro de Doação</h3>
+            <form onSubmit={handleNewDoacao}>
+                <div>
+                    <label htmlFor="pessoaId">Pessoa</label>
+                    <select
+                        name="pessoaId"
+                        id="pessoaId"
+                        onChange={e => setPessoaId(parseInt(e.target.value))}>
+                        <option value="0" selected>Selecione:</option>
+                        {pessoas.map(pessoa => (
+                            <option value={pessoa.id}>{pessoa.nome}</option>
+                        ))}
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="localId">Local de Coleta</label>
+                    <select
+                        name="localId"
+                        id="localId"
+                        onChange={e => setLocalId(parseInt(e.target.value))}>
+                        <option value="0" selected>Selecione:</option>
+                        {locaisColeta.map(local => (
+                            <option value={local.id}>{local.rua}, {local.numero}</option>
+                        ))}
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="data">Data</label>
+                <input type="text"  
+                name="data" 
+                id="data" 
+                value={data}
+                onChange={e => setData(e.target.value)}
+                />
+                </div>
+                <button type="submit">Cadastrar</button>
+                <button type="reset">Limpar</button>
+            </form>
+        </div>
+    );
+}
+
+export default CreateDoacoes;

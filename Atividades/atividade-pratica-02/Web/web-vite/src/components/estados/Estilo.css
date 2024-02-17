@@ -1,0 +1,95 @@
+/* Estilos para o fundo */
+body {
+    background-color: #f5f5f5; /* Cor de fundo */
+    font-family: Arial, sans-serif; /* Fonte padrão */
+  }
+  
+  /* Estilos para o container principal */
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para o título */
+  h3 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para o formulário */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Estilos para os campos do formulário */
+  label {
+    margin-bottom: 5px;
+  }
+  
+  input,
+  select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Estilos para os botões do formulário */
+  /* Estilização para os botões */
+  /* Estilização para os botões */
+  button {
+    background-color: #007bff; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    border: none; /* Remove borda */
+    border-radius: 5px; /* Borda arredondada */
+    padding: 10px 20px; /* Preenchimento */
+    margin-right: 10px; /* Margem à direita */
+    cursor: pointer; /* Cursor do mouse em forma de mão */
+    transition: background-color 0.3s; /* Transição suave de cor de fundo */
+    width: px; /* Largura fixa para todos os botões */
+  }
+  
+  /* Estilização para os botões quando hover */
+  button:hover {
+    background-color: #0056b3; /* Cor de fundo alterada */
+  }
+  
+  button[type="reset"] {
+    background-color: #dc3545;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  button[type="reset"]:hover {
+    background-color: #c82333;
+  }
+  
+  button[type="submit"] {
+    margin-right: 10px;
+  }
+  /* Estilos para a tabela */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th,
+  td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  

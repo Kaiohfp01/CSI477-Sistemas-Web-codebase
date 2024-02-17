@@ -1,0 +1,37 @@
+/* Estilo para o fundo do menu */
+.menu-background {
+    background-color: #f0f0f0; /* Cor de fundo */
+    padding: 20px; /* Espaçamento interno */
+}
+
+/* Estilo para o título do menu */
+.menu-title {
+    font-size: 24px; /* Tamanho da fonte */
+    color: #333; /* Cor do texto */
+}
+
+/* Estilo para a lista de links */
+.menu-list {
+    list-style-type: none; /* Removendo estilos padrão de lista */
+    padding: 0; /* Removendo o preenchimento padrão da lista */
+}
+
+/* Estilo para os itens da lista */
+.menu-item {
+    margin-bottom: 10px; /* Espaçamento entre os itens */
+}
+
+/* Estilo para os links */
+.menu-link {
+    text-decoration: none; /* Removendo sublinhado padrão */
+    color: #555; /* Cor do texto do link */
+    padding: 10px 20px; /* Preenchimento do link */
+    border-radius: 5px; /* Borda arredondada */
+    display: inline-block; /* Tornando os links em linha */
+    transition: background-color 0.3s ease; /* Transição suave da cor de fundo */
+}
+
+/* Estilo de hover para os links */
+.menu-link:hover {
+    background-color: #ddd; /* Cor de fundo ao passar o mouse */
+}

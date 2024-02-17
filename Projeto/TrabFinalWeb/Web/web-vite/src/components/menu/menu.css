@@ -1,0 +1,59 @@
+/* menu.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('https://www.eurodicas.com.br/wp-content/uploads/2019/01/pet-shop-em-portugal.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.menu-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px; /* Largura do menu */
+  background-color: rgba(0, 0, 0, 0.5); /* Cor de fundo do menu com transparência */
+  padding: 20px;
+  color: #fff; /* Cor do texto */
+  display: flex; /* Usar flexbox */
+  flex-direction: column; /* Direção da coluna */
+  justify-content: flex-start; /* Alinhamento do início */
+  align-items: flex-start; /* Alinhamento do início */
+}
+
+.menu-container h2 {
+  margin-bottom: 20px;
+  color: #fff; /* Cor do texto */
+}
+
+.menu-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu-container ul li {
+  margin-bottom: 10px;
+}
+
+.menu-container ul li a {
+  color: #fff; /* Cor dos links */
+  text-decoration: none;
+}
+
+.menu-container ul li a:hover {
+  text-decoration: underline;
+}
+
+.menu-container button {
+  background-color: #4caf50; /* Cor do botão */
+  color: #fff; /* Cor do texto do botão */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.menu-container button:hover {
+  background-color: #45a049; /* Cor do botão ao passar o mouse */
+}

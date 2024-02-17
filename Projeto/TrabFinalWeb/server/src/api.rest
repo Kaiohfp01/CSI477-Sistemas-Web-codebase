@@ -1,0 +1,35 @@
+GET http://localhost:5000/estados
+
+###
+
+GET http://localhost:5000/estados/1
+
+###
+
+POST http://localhost:5000/estados
+Content-Type: application/json
+
+{
+    "nome": "Tocantiss",
+    "sigla": "TOS"
+}
+
+###
+
+PUT http://localhost:5000/estados
+Content-Type: application/json
+
+{    
+    "id": 6,
+    "nome": "Rio Grande do Norte",
+    "sigla": "RN"  
+}
+
+###
+
+DELETE http://localhost:5000/estados
+Content-Type: application/json
+
+{
+    "id": 5
+}

@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Pessoa {
+  id       Int      @id @default(autoincrement())
+  nome     String
+  idade    Int
+  sexo     String
+  contato  String
+  pets     Pet[]    // Um usuário pode ter vários pets
+
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  nome       String
+  email      String   @unique
+  password   String
+  created_at DateTime @default(now())
+
+  @@map("users")
+}
+
+model Pet {
+  id        Int       @id @default(autoincrement())
+  nome      String
+  idade     Int
+  raca      String
+  especie   String
+  sexo      String
+  dono_id    Int
+
+  dono      Pessoa  @relation(fields: [dono_id], references: [id]) // Chave estrangeira para Usuario
+}
+model Consulta {
+  id               Int          @id @default(autoincrement())
+  data             String
+  motivo           String
+  medicamentos     String
+ 
+  veterinario      Veterinario  @relation(fields: [veterinarioId], references: [id]) // Chave estrangeira para Veterinario
+  veterinarioId    Int
+}
+
+
+
+model Veterinario {
+  id         Int          @id @default(autoincrement())
+  nome       String
+  Especialidade String
+  Contato    String
+  consultas  Consulta[]   // Um veterinário pode ter várias consultas
+}
+
+// Para atualizar o esquema para o BD faremos -> "npx prisma migrate dev" 
+// OBS: Migração é Atualização
